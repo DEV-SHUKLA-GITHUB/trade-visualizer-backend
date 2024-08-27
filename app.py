@@ -40,7 +40,7 @@ def get_instrument_tokens(tradebook_df, kite):
 # Fetch options data for each symbol
 def fetch_options_data(instrument_list,kite):
     option_data_df = pd.DataFrame()
-    to_date = from_date = datetime.datetime.now().date() - datetime.timedelta(days=3)
+    to_date = from_date = datetime.datetime.now().date() - datetime.timedelta(days=4)
     print(to_date, from_date)
     for symbol, instrument_token in instrument_list.items():
         df = pd.DataFrame(kite.historical_data(instrument_token, from_date, to_date, 'minute', continuous=False, oi=False))
@@ -49,7 +49,7 @@ def fetch_options_data(instrument_list,kite):
         df['date'] = df['date'].dt.strftime('%Y-%m-%d %H:%M:%S')
         df['date'] = pd.to_datetime(df['date'])
         option_data_df = pd.concat([option_data_df, df], ignore_index=True)
-    print(f"options data is {option_data_df}")
+    print(f"options data is {option_data_df}")  
     return option_data_df
 
 # Calculate MTM
