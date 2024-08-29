@@ -40,7 +40,7 @@ def get_instrument_tokens(tradebook_df, kite):
 # Fetch options data for each symbol
 def fetch_options_data(instrument_list,kite):
     option_data_df = pd.DataFrame()
-    to_date = from_date = datetime.datetime.now().date() - datetime.timedelta(days=5)
+    to_date = from_date = datetime.datetime.now().date() - datetime.timedelta(days=6)
     print(to_date, from_date)
     for symbol, instrument_token in instrument_list.items():
         df = pd.DataFrame(kite.historical_data(instrument_token, from_date, to_date, 'minute', continuous=False, oi=False))
